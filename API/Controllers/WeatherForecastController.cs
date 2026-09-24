@@ -1,3 +1,6 @@
+
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.Versioning;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
@@ -28,12 +31,12 @@ public WeatherForecastController(ILogger<WeatherForecastController> logger, Data
 public IEnumerable<WeatherForecast> Get()
     {
         return Enumerable.Range(1,5).Select(index =>
-            new WeatherForecast
-            (
+            new WeatherForecast()
+            {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            ))
+            })
             .ToArray();
     }
 
